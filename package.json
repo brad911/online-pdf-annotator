@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "move-static": "cp -a ./node_modules/@pdftron/pdfjs-express/public/. ./dist/public/pdfjsexpress",
-    "build": "react-scripts build && npm run move-static"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
