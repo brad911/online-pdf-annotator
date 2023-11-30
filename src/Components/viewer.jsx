@@ -24,13 +24,12 @@ function Viewer({ uploadedFile }) {
             instance.UI.disableElements(['toolbarGroup-Edit']);
             instance.UI.disableElements(['toolbarGroup-FillAndSign']);
             instance.UI.disableElements(['toolbarGroup-Insert']); // hides DOM element + disables shortcut
-            
-
-            obj.addEventListener('change', () => {
-              // Get the file from the input
-              const file = obj.files[0];
-              instance.UI.loadDocument(file, { filename: file.name });
-            });
+          
+            // obj.addEventListener('change', () => {
+            //   // Get the file from the input
+            //   const file = obj.files[0];
+            //   instance.UI.loadDocument(file, { filename: file.name });
+            // });
           })
         }
       } catch (error) {
