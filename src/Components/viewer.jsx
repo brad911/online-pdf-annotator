@@ -8,28 +8,31 @@ function Viewer({ uploadedFile }) {
     let instance = null;
     const initializeViewer = async () => {
       try {
-        if (!instance && uploadedFile != null) {
-          let obj=document.getElementById("file_upload")
-          console.log(obj,"<== obj")
+        if (!instance) {
+          let obj=document.getElementById("fileUpload")
+          console.log(obj,"<==== obj")
           instance = await WebViewer({
             enableMeasurement: true,
             path: '/pdfjsexpress',
             initialDoc: "/files/sample.pdf", // Directly use the uploaded file from state
             extension: 'pdf', // Specify the file extension here if needed
             licenseKey: 'adjMD6yMNCUJMX75Uyda',
-          }, viewer.current).then(instance=>{
+          }, viewer.current).then(async instance=>{
             instance.UI.enableFeatures([instance.UI.Feature.Measurement]);
-            instance.UI.disableElements(['toolbarGroup-Annotate']);
+            // instance.UI.disableElements(['toolbarGroup-Annotate']);
             instance.UI.disableElements(['toolbarGroup-Shapes']);
-            instance.UI.disableElements(['toolbarGroup-Edit']);
+            // instance.UI.disableElements(['toolbarGroup-Edit']);
             instance.UI.disableElements(['toolbarGroup-FillAndSign']);
             instance.UI.disableElements(['toolbarGroup-Insert']); // hides DOM element + disables shortcut
-          
-            // obj.addEventListener('change', () => {
-            //   // Get the file from the input
-            //   const file = obj.files[0];
-            //   instance.UI.loadDocument(file, { filename: file.name });
-            // });
+             obj.addEventListener('change', () => {
+              console.log("it got changed")
+              // Get the file from the input
+              const file = obj.files[0];
+              if(file){
+
+                instance.UI.loadDocument(file, { filename: file.name });
+              }
+            });
           })
         }
       } catch (error) {

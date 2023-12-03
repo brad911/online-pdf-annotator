@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import Viewer from '../Components/viewer'
 import FileUploadComponent from '../Components/fileUploadComponent'
+import CustomDrawer from '../Components/customerDrawer/customDrawer';
 
 function Home() {
     const [uploadedFile,setUploadedFile]=useState(null);
@@ -8,8 +9,8 @@ function Home() {
         setUploadedFile(e.target.files[0]);
       };
     return (
-        <div onClick={()=>{console.log(uploadedFile,"<===== wowowow")}}>
-            <FileUploadComponent  onChange={handleFileUpload}/>
+        <div style={{display:"flex"}}>
+            <CustomDrawer onChange={handleFileUpload}/>
             <Viewer  uploadedFile={uploadedFile}/>
         </div>
     )
